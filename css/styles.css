@@ -90,6 +90,7 @@ img {
   display: flex;
   gap: 40px;
 }
+
 .header-navigation-link {
   color: #2e2f42;
   font-weight: 500;
@@ -97,11 +98,28 @@ img {
   letter-spacing: 0.02em;
   padding-top: 24px;
   padding-bottom: 24px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-navigation-link:hover,
 .header-navigation-link:focus {
   color: #404bbf;
+}
+
+.current {
+  position: relative;
+  color: #404bbf;
+}
+
+.current::after {
+  content: '';
+  border-radius: 2px;
+  background-color: #404bbf;
+  height: 4px;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  bottom: -1px;
 }
 
 .header-adress {
@@ -119,6 +137,7 @@ img {
   color: #434455;
   padding-top: 24px;
   padding-bottom: 24px;
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .header-adress-link:hover,
@@ -139,6 +158,16 @@ img {
   background-color: #2e2f42;
   padding-top: 188px;
   padding-bottom: 188px;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(46, 47, 66, 0.7),
+      rgba(46, 47, 66, 0.7)
+    ),
+    url(../images/hero-img.jpg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  max-width: 1440px;
 }
 
 .hero-title {
@@ -166,6 +195,7 @@ img {
   border: none;
   border-radius: 4px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .hero-button:hover,
@@ -223,13 +253,28 @@ img {
   width: calc((100% - 3 * 24px) / 4);
 }
 
+.advantage-list-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border-radius: 4px;
+  border: 1px solid #8e8f99;
+  background: #f4f4fd;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
+
+.advantage-list-icon {
+  margin: 0;
+}
+
 .list-title {
   color: #2e2f42;
   font-size: 20px;
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.02em;
-  margin-bottom: 8px;
+  margin: 8px 0;
 }
 
 .list-text {
@@ -267,14 +312,51 @@ img {
     0px 1px 6px 0px rgba(46, 47, 66, 0.08);
 }
 
-.list-title {
-  margin-bottom: 8px;
-}
-
 .team-list-content {
   padding-bottom: 32px;
   padding-top: 32px;
 }
+
+.team-list-text {
+  margin-bottom: 8px;
+}
+
+.team-list-block {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+.team-list-socials {
+  height: 40px;
+  width: 40px;
+}
+
+.team-list-link {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #4d5ae5;
+  border-radius: 50%;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.team-list-icons {
+  fill: #fff;
+}
+
+.team-list-link:hover {
+  background-color: #404bbf;
+}
+
+.team-list-link:hover .team-list-icons {
+  fill: #f4f4fd;
+}
+
 /* -------------------- */
 
 /* ----------PORTFOLIO--------- */
@@ -295,11 +377,21 @@ img {
   row-gap: 48px;
 }
 
+.portfolio-overlay {
+  position: relative;
+}
+
 .portfolio-list-item {
   border: 1px solid #e7e9fc;
   background: #fff;
-  border: 1px solid #e7e9fc;
   width: calc((100% - 2 * 24px) / 3);
+  transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.portfolio-list-item:hover {
+  border: 1px solid #f4f4fd;
+  box-shadow: 0 2px 1px 0 rgba(46, 47, 66, 0.08),
+    0 1px 1px 0 rgba(46, 47, 66, 0.16), 0 1px 6px 0 rgba(46, 47, 66, 0.08);
 }
 
 .portfolio-list-content {
@@ -310,6 +402,33 @@ img {
 
 .portfolio-list-item img {
   max-width: 100%;
+}
+
+.portfolio-list-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.box-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 32px;
+  background-color: #4d5ae5;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.box-overlay-card {
+  color: #f4f4fd;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+}
+
+.portfolio-overlay:hover .box-overlay {
+  transform: translateY(0);
 }
 
 /* -------------------- */
@@ -323,7 +442,9 @@ img {
 }
 
 .footer-container {
-  display: block;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
 }
 
 .footer-logo {
@@ -340,6 +461,20 @@ img {
   line-height: 1.5;
   letter-spacing: 0.02em;
   max-width: 264px;
+}
+
+.footer-links {
+}
+.footer-media {
+}
+.footer-block {
+  display: flex;
+}
+.footer-socials {
+}
+.footer-link {
+}
+.footer-icon {
 }
 
 /* -------------------- */
